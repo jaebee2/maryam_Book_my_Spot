@@ -1,38 +1,35 @@
-// frontend/src/pages/SearchParking.js
 import React, { useState } from 'react';
-import { fetchAPI } from '../utils/api';
 
 const SearchParking = () => {
-  const [query, setQuery] = useState('');
-  const [spots, setSpots] = useState([]);
+  const [location, setLocation] = useState('');
 
-  const searchSpots = async () => {
-    try {
-      const data = await fetchAPI(`/parking/search?location=${query}`);
-      setSpots(data);
-    } catch (error) {
-      alert(error.message);
-    }
+  const handleSearch = () => {
+    // Fetch available spots from backend based on the location
+    fetch(`/api/search-parking?location=${location}`)
+      .then((res) => res.json())
+      .then((data) => console.log('Found parking spots:', data));
   };
 
   return (
-    <div>
-      <h2>Search Parking</h2>
-      <input
-        type="text"
-        placeholder="Enter location"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      <button onClick={searchSpots}>Search</button>
-      <ul>
-        {spots.map((spot) => (
-          <li key={spot.id}>
-            <p>{spot.location}</p>
-            <p>{spot.price} per hour</p>
-          </li>
-        ))}
-      </ul>
+    <div className="min-h-screen bg-gray-100">
+      <div className="container mx-auto py-6">
+        <h2 className="text-3xl font-semibold text-gray-700 mb-6">Search for Parking</h2>
+        <div>
+          <input
+            type="text"
+            className="w-full p-3 mb-4 border border-gray-300 rounded-lg"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            placeholder="Enter location (e.g., city, postcode)"
+          />
+          <button
+            onClick={handleSearch}
+            className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500"
+          >
+            Search
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

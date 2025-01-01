@@ -1,3 +1,17 @@
+/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+/* Optional: Customize global styles like font family, background colors, etc. */
+body {
+  background-color: #f9fafb; /* Light gray background */
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Roboto', sans-serif;
+}

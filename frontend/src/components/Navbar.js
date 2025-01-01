@@ -1,42 +1,24 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-  const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem('token');
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/');
-  };
-
+const NavBar = () => {
   return (
     <nav className="bg-blue-600 p-4">
-      <ul className="flex  space-x-6 text-white">
-        <li><Link to="/" className="hover:underline">Home</Link></li>
-        <li><Link to="/search" className="hover:underline">Search Parking</Link></li>
-        {isLoggedIn ? (
-          <>
-            <li><Link to="/bookings" className="hover:underline">My Bookings</Link></li>
-            <li><Link to="/feedback" className="hover:underline">Feedback</Link></li>
-            <li>
-              <button
-                onClick={handleLogout}
-                className="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded"
-              >
-                Logout
-              </button>
-            </li>
-          </>
-        ) : (
-          <>
-            <li><Link to="/login" className="hover:underline">Login</Link></li>
-            <li><Link to="/register" className="hover:underline">Register</Link></li>
-          </>
-        )}
-      </ul>
+      <div className="container mx-auto flex justify-between items-center">
+        <div className="text-white text-xl font-bold">BookMySpot</div>
+        <div className="space-x-4">
+          <Link to="/" className="text-white hover:text-gray-300">Home</Link>
+          <Link to="/admin" className="text-white hover:text-gray-300">Admin</Link>
+          <Link to="/bookings" className="text-white hover:text-gray-300">Bookings</Link>
+          <Link to="/feedback" className="text-white hover:text-gray-300">Feedback</Link>
+          <Link to="/login" className="text-white hover:text-gray-300">Login</Link>
+          <Link to="/register" className="text-white hover:text-gray-300">Register</Link>
+          <Link to="/owner" className="text-white hover:text-gray-300">Owner</Link>
+          <Link to="/search-results" className="text-white hover:text-gray-300">Search Results</Link>
+        </div>
+      </div>
     </nav>
   );
 };
 
-export default Navbar;
+export default NavBar;
