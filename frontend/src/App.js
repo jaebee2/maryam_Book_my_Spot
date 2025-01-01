@@ -9,6 +9,8 @@ import SearchParking from './pages/SearchParking';
 import Bookings from './pages/Bookings';
 import Admin from './pages/Admin';
 import Feedback from './pages/Feedback';
+import './index.css'; 
+
 
 const App = () => (
   <Router>
